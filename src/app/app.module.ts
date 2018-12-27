@@ -12,6 +12,9 @@ import { AppContainerComponent } from './app-container/app-container.component';
 import { AppTransactionComponent } from './app-container/app-transaction/app-transaction.component';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatInputModule } from '@angular/material/input';
+import { MatCardModule } from '@angular/material/card';
+import { MatSelectModule } from '@angular/material/select';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -30,6 +33,9 @@ import { MatInputModule } from '@angular/material/input';
     ReactiveFormsModule,
     FormsModule,
     BrowserAnimationsModule,
+    MatCardModule,
+    MatInputModule,
+    MatSelectModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,5 +1,50 @@
-<mat-form-field>
-<input matInput [matDatepicker]="picker" placeholder="Choose a date">
-<mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-<mat-datepicker #picker></mat-datepicker>
-</mat-form-field>
+<form [formGroup]="transactionForm" novalidate (ngSubmit)="onSubmit()">
+    <mat-card>
+        <mat-card-header>
+            <mat-card-title>Transaction</mat-card-title>
+        </mat-card-header>
+        <div class="row">
+            <div class="col">
+                <mat-form-field class="full-width">
+                    <input matInput [matDatepicker]="picker" placeholder="Choose a date" formControlName="date">
+                    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                    <mat-datepicker #picker></mat-datepicker>
+                </mat-form-field>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <mat-form-field class="full-width">
+                    <input matInput placeholder="Description" formControlName="description">
+                    <mat-error *ngIf="transactionForm.controls['description'].hasError('required')">
+                        Description <strong>required</strong>
+                    </mat-error>
+
+                </mat-form-field>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <mat-form-field class="full-width">
+                    <mat-select placeholder="Group" formControlName="group">
+                        <mat-option *ngFor="let group of groups" [value]="group.name">
+                            {{ group.name }}
+                        </mat-option>
+                    </mat-select>
+                    <mat-error *ngIf="transactionForm.controls['group'].hasError('required')">
+                        Group is <strong>required</strong>
+                    </mat-error>
+
+                </mat-form-field>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <mat-form-field class="full-width">
+                    <input matInput #postalCode placeholder="Amount" type="number" formControlName="amount">
+                    <mat-hint align="end">{{postalCode.value.length}} / 5</mat-hint>
+                </mat-form-field>
+            </div>
+        </div>
+    </mat-card>
+</form>
