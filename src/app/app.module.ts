@@ -14,13 +14,19 @@ import { MatNativeDateModule } from '@angular/material/core';
 import { MatInputModule } from '@angular/material/input';
 import { MatCardModule } from '@angular/material/card';
 import { MatSelectModule } from '@angular/material/select';
-
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
+import { MatChipsModule } from '@angular/material/chips';
+import { MatIconModule } from '@angular/material/icon';
+import { TransactionListComponent } from './app-container/transaction-list/transaction-list.component';
+import { MatTableModule } from '@angular/material/table';
+import { MatGridListModule } from '@angular/material/grid-list';
 @NgModule({
   declarations: [
     AppComponent,
     AppHeaderComponent,
     AppContainerComponent,
-    AppTransactionComponent
+    AppTransactionComponent,
+    TransactionListComponent
   ],
   imports: [
     BrowserModule,
@@ -35,7 +41,12 @@ import { MatSelectModule } from '@angular/material/select';
     BrowserAnimationsModule,
     MatCardModule,
     MatInputModule,
-    MatSelectModule
+    MatSelectModule,
+    MatAutocompleteModule,
+    MatChipsModule,
+    MatIconModule,
+    MatTableModule,
+    MatGridListModule
   ],
   providers: [],
   bootstrap: [AppComponent]
