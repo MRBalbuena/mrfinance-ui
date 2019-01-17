@@ -4,6 +4,7 @@ import {COMMA, ENTER} from '@angular/cdk/keycodes';
 import {Observable} from 'rxjs';
 import {map, startWith} from 'rxjs/operators';
 import {MatAutocompleteSelectedEvent, MatChipInputEvent, MatAutocomplete} from '@angular/material';
+import { GROUPS, USERS } from 'src/app/shared/constants';
 
 @Component({
   selector: 'app-transaction',
@@ -13,9 +14,12 @@ import {MatAutocompleteSelectedEvent, MatChipInputEvent, MatAutocomplete} from '
 export class AppTransactionComponent {
 
   transactionForm = this.fb.group({
+    user: null,
     date: null,
-    description: null,
+    account: null,
     amount: 0,
+    type: null,
+    description: null,
     group: null,
     tags: null
   });
@@ -28,7 +32,9 @@ export class AppTransactionComponent {
   filteredTags: Observable<string[]>;
   tags: string[] = ['Party'];
   allTags: string[] = ['Christmas 2019', 'holidays 2019', 'Valencia', 'Home Valencia', 'Party'];
-  @ViewChild('tagInput') tagInput: ElementRef<HTMLInputElement>;
+  groups = GROUPS;
+  users = USERS;
+  @ViewChild('tags') tagInput: ElementRef<HTMLInputElement>;
   @ViewChild('auto') matAutocomplete: MatAutocomplete;
   
   constructor(private fb: FormBuilder) {
@@ -37,11 +43,6 @@ export class AppTransactionComponent {
       map((tag: string | null) => tag ? this._filter(tag) : this.allTags.slice()));
   }
 
-  groups = [
-    {id: 1, name: 'Supermarket'},
-    {id: 2, name: 'Car Maintenance'},
-    {id: 3, name: 'Insurance'}
-  ];
 
   add(event: MatChipInputEvent): void {
     // Add fruit only when MatAutocomplete is not open
@@ -81,7 +82,7 @@ export class AppTransactionComponent {
   private _filter(value: string): string[] {
     const tagValue = value.toLowerCase();
 
-    return this.allTags.filter(fruit => fruit.toLowerCase().indexOf(tagValue) === 0);
+    return this.allTags.filter(tag => tag.toLowerCase().indexOf(tagValue) === 0);
   }
 
 }
