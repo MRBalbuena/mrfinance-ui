@@ -17,7 +17,7 @@
 
                 </mat-form-field>
             </div>
-        </div>        
+        </div> 
         <div class="row">
             <div class="col">
                 <mat-form-field class="full-width transaction-card">
@@ -30,11 +30,23 @@
         <div class="row">
             <div class="col">
                 <mat-form-field class="full-width transaction-card">
-                    <input matInput placeholder="Description" formControlName="description">
-                    <mat-error *ngIf="transactionForm.controls['description'].hasError('required')">
-                        Description <strong>required</strong>
+                    <mat-select placeholder="Account" formControlName="account">
+                        <mat-option *ngFor="let account of accounts" [value]="account">
+                            {{ account.name }}
+                        </mat-option>
+                    </mat-select>
+                    <mat-error *ngIf="transactionForm.controls['group'].hasError('required')">
+                        User is <strong>required</strong>
                     </mat-error>
 
+                </mat-form-field>
+            </div>
+        </div>                
+        <div class="row">
+            <div class="col">
+                <mat-form-field class="full-width transaction-card">
+                    <input matInput #postalCode placeholder="Amount" type="number" formControlName="amount">
+                    <span matPrefix>£&nbsp;</span>
                 </mat-form-field>
             </div>
         </div>
@@ -56,15 +68,18 @@
         <div class="row">
             <div class="col">
                 <mat-form-field class="full-width transaction-card">
-                    <input matInput #postalCode placeholder="Amount" type="number" formControlName="amount">
-                    <span matPrefix>£&nbsp;</span>
+                    <input matInput placeholder="Description" formControlName="description">
+                    <mat-error *ngIf="transactionForm.controls['description'].hasError('required')">
+                        Description <strong>required</strong>
+                    </mat-error>
+
                 </mat-form-field>
             </div>
         </div>
         <div class="row">
             <div class="col">
                 <mat-form-field class="full-width transaction-card">
-                    <input type="text" placeholder="Pick one" aria-label="Tag" matInput formControlName="tags"
+                    <input type="text" placeholder="Pick Tag" aria-label="Tag" matInput formControlName="tags"
                         [matAutocomplete]="auto">
                     <mat-autocomplete #auto="matAutocomplete">
                         <mat-option *ngFor="let tag of tags" [value]="tag">

@@ -16,11 +16,11 @@ export class AppTransactionComponent {
   transactionForm = this.fb.group({
     user: null,
     date: null,
-    account: null,
-    amount: 0,
-    type: null,
+    account: null,    
     description: null,
     group: null,
+    amount: 0,
+    type: null,
     tags: null
   });
   visible = true;
