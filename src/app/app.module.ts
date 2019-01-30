@@ -20,6 +20,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { TransactionListComponent } from './app-container/transaction-list/transaction-list.component';
 import { MatTableModule } from '@angular/material/table';
 import { MatGridListModule } from '@angular/material/grid-list';
+import { MatButtonModule } from '@angular/material/button';
 @NgModule({
   declarations: [
     AppComponent,
@@ -46,7 +47,8 @@ import { MatGridListModule } from '@angular/material/grid-list';
     MatChipsModule,
     MatIconModule,
     MatTableModule,
-    MatGridListModule
+    MatGridListModule,
+    MatButtonModule
   ],
   providers: [],
   bootstrap: [AppComponent]

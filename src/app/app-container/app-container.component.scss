@@ -1,0 +1,12 @@
+.main-body-cards {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 20px;
+}
+
+.body-card {
+    display: inline-block;
+    margin: 20px;
+    vertical-align: top;
+    width: 500px;
+}

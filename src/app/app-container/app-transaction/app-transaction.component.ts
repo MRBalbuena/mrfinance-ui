@@ -1,10 +1,10 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { FormBuilder, Validators, FormControl } from '@angular/forms';
-import {COMMA, ENTER} from '@angular/cdk/keycodes';
-import {Observable} from 'rxjs';
+import { COMMA, ENTER } from '@angular/cdk/keycodes';
+import { Observable } from 'rxjs';
 import {map, startWith} from 'rxjs/operators';
 import {MatAutocompleteSelectedEvent, MatChipInputEvent, MatAutocomplete} from '@angular/material';
-import { GROUPS, USERS } from 'src/app/shared/constants';
+import { GROUPS, USERS, ACCOUNTS } from 'src/app/shared/constants';
 
 @Component({
   selector: 'app-transaction',
@@ -34,6 +34,7 @@ export class AppTransactionComponent {
   allTags: string[] = ['Christmas 2019', 'holidays 2019', 'Valencia', 'Home Valencia', 'Party'];
   groups = GROUPS;
   users = USERS;
+  accounts = ACCOUNTS;
   @ViewChild('tags') tagInput: ElementRef<HTMLInputElement>;
   @ViewChild('auto') matAutocomplete: MatAutocomplete;
   
@@ -45,13 +46,13 @@ export class AppTransactionComponent {
 
 
   add(event: MatChipInputEvent): void {
-    // Add fruit only when MatAutocomplete is not open
+    // Add tags only when MatAutocomplete is not open
     // To make sure this does not conflict with OptionSelected Event
     if (!this.matAutocomplete.isOpen) {
       const input = event.input;
       const value = event.value;
 
-      // Add our fruit
+      // Add our tag
       if ((value || '').trim()) {
         this.tags.push(value.trim());
       }
@@ -74,8 +75,7 @@ export class AppTransactionComponent {
   }
 
   selected(event: MatAutocompleteSelectedEvent): void {
-    this.tags.push(event.option.viewValue);
-    this.tagInput.nativeElement.value = '';
+    this.tags.push(event.option.viewValue);    
     this.tagCtrl.setValue(null);
   }
 

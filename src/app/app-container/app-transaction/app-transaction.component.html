@@ -31,7 +31,7 @@
             <div class="col">
                 <mat-form-field class="full-width transaction-card">
                     <mat-select placeholder="Account" formControlName="account">
-                        <mat-option *ngFor="let account of accounts" [value]="account">
+                        <mat-option *ngFor="let account of accounts" [value]="account.name">
                             {{ account.name }}
                         </mat-option>
                     </mat-select>
@@ -79,35 +79,26 @@
         <div class="row">
             <div class="col">
                 <mat-form-field class="full-width transaction-card">
-                    <input type="text" placeholder="Pick Tag" aria-label="Tag" matInput formControlName="tags"
-                        [matAutocomplete]="auto">
-                    <mat-autocomplete #auto="matAutocomplete">
-                        <mat-option *ngFor="let tag of tags" [value]="tag">
-                            {{tag}}
-                        </mat-option>
-                    </mat-autocomplete>
-                </mat-form-field>
-                <span class="material-icons" (click)="addTag">add_circle</span>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col">
-                <mat-form-field class="full-width transaction-card">
                     <mat-chip-list #chipList>
                         <mat-chip *ngFor="let tag of tags" [selectable]="selectable" [removable]="removable" (removed)="remove(tag)">
                             {{tag}}
                             <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
                         </mat-chip>
-                        <input placeholder="New tag..." #fruitInput [formControl]="tagCtrl" [matAutocomplete]="auto"
+                        <input placeholder="Select or Add tag..." #fruitInput [formControl]="tagCtrl" [matAutocomplete]="auto"
                             [matChipInputFor]="chipList" [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
                             [matChipInputAddOnBlur]="addOnBlur" (matChipInputTokenEnd)="add($event)">
                     </mat-chip-list>
                     <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selected($event)">
                         <mat-option *ngFor="let tag of filteredTags | async" [value]="tag">
-                            {{fruit}}
+                            {{tag}}
                         </mat-option>
                     </mat-autocomplete>
                 </mat-form-field>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <button mat-raised-button color="primary">Save</button>
             </div>
         </div>
     </mat-card>

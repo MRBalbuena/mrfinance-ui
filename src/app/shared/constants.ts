@@ -8,3 +8,9 @@ export const USERS = [
     {id: 1, name: 'Marcelo'},
     {id: 2, name: 'Gabriela'}
 ];
+
+export const ACCOUNTS = [
+    {id: 1, name: 'Barclays'},
+    {id: 1, name: 'HSBC'},
+    {id: 1, name: 'BarclayCard CC'}
+]
