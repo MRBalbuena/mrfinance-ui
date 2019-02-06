@@ -37,7 +37,7 @@ export class AppTransactionComponent {
   accounts = ACCOUNTS;
   @ViewChild('tags') tagInput: ElementRef<HTMLInputElement>;
   @ViewChild('auto') matAutocomplete: MatAutocomplete;
-  
+
   constructor(private fb: FormBuilder) {
     this.filteredTags = this.tagCtrl.valueChanges.pipe(
       startWith(null),
@@ -75,7 +75,7 @@ export class AppTransactionComponent {
   }
 
   selected(event: MatAutocompleteSelectedEvent): void {
-    this.tags.push(event.option.viewValue);    
+    this.tags.push(event.option.viewValue);
     this.tagCtrl.setValue(null);
   }
 
@@ -85,4 +85,7 @@ export class AppTransactionComponent {
     return this.allTags.filter(tag => tag.toLowerCase().indexOf(tagValue) === 0);
   }
 
+  onSubmit(event: any) {
+    console.log(event);
+  }
 }
