@@ -87,6 +87,6 @@ export class AppTransactionComponent {
   }
 
   onSubmit(event: any) {
-    console.log(event);
+    console.log(JSON.stringify(this.transactionForm.value));
   }
 }
