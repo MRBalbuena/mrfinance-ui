@@ -4,7 +4,7 @@ import { COMMA, ENTER } from '@angular/cdk/keycodes';
 import { Observable } from 'rxjs';
 import {map, startWith} from 'rxjs/operators';
 import {MatAutocompleteSelectedEvent, MatChipInputEvent, MatAutocomplete} from '@angular/material';
-import { GROUPS, USERS, ACCOUNTS } from 'src/app/shared/constants';
+import { GROUPS, USERS, ACCOUNTS, TYPES } from 'src/app/shared/constants';
 
 @Component({
   selector: 'app-transaction',
@@ -16,7 +16,7 @@ export class AppTransactionComponent {
   transactionForm = this.fb.group({
     user: null,
     date: null,
-    account: null,    
+    account: null,
     description: null,
     group: null,
     amount: 0,
@@ -35,6 +35,7 @@ export class AppTransactionComponent {
   groups = GROUPS;
   users = USERS;
   accounts = ACCOUNTS;
+  types = TYPES;
   @ViewChild('tags') tagInput: ElementRef<HTMLInputElement>;
   @ViewChild('auto') matAutocomplete: MatAutocomplete;
 
