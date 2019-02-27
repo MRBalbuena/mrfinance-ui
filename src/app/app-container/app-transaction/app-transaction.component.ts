@@ -1,10 +1,11 @@
-import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef, Output, Input, EventEmitter } from '@angular/core';
 import { FormBuilder, Validators, FormControl } from '@angular/forms';
 import { COMMA, ENTER } from '@angular/cdk/keycodes';
 import { Observable } from 'rxjs';
 import {map, startWith} from 'rxjs/operators';
 import {MatAutocompleteSelectedEvent, MatChipInputEvent, MatAutocomplete} from '@angular/material';
 import { GROUPS, USERS, ACCOUNTS, TYPES } from 'src/app/shared/constants';
+import { ITransaction } from 'src/app/models/transaction.models';
 
 @Component({
   selector: 'app-transaction',
@@ -12,7 +13,10 @@ import { GROUPS, USERS, ACCOUNTS, TYPES } from 'src/app/shared/constants';
   styleUrls: ['./app-transaction.component.scss']
 })
 export class AppTransactionComponent {
+@Input() transaction: ITransaction;
+@Output() editedTransaction: EventEmitter<ITransaction>;
 
+  // transactionForm = this.fb.group(this.transaction);
   transactionForm = this.fb.group({
     user: null,
     date: null,
@@ -88,5 +92,6 @@ export class AppTransactionComponent {
 
   onSubmit(event: any) {
     console.log(JSON.stringify(this.transactionForm.value));
+    this.editedTransaction.emit(this.transactionForm.value);
   }
 }
