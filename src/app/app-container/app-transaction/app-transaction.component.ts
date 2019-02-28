@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild, ElementRef, Output, Input, EventEmitter } from '@angular/core';
-import { FormBuilder, Validators, FormControl } from '@angular/forms';
+import { FormBuilder, Validators, FormControl, FormGroup } from '@angular/forms';
 import { COMMA, ENTER } from '@angular/cdk/keycodes';
 import { Observable } from 'rxjs';
 import {map, startWith} from 'rxjs/operators';
@@ -12,21 +12,12 @@ import { ITransaction } from 'src/app/models/transaction.models';
   templateUrl: './app-transaction.component.html',
   styleUrls: ['./app-transaction.component.scss']
 })
-export class AppTransactionComponent {
+export class AppTransactionComponent implements OnInit {
 @Input() transaction: ITransaction;
 @Output() editedTransaction: EventEmitter<ITransaction>;
 
-  // transactionForm = this.fb.group(this.transaction);
-  transactionForm = this.fb.group({
-    user: null,
-    date: null,
-    account: null,
-    description: null,
-    group: null,
-    amount: 0,
-    type: null,
-    tags: null
-  });
+  transactionForm: FormGroup; //  = this.fb.group(this.transaction);
+
   visible = true;
   selectable = true;
   removable = true;
@@ -49,6 +40,19 @@ export class AppTransactionComponent {
       map((tag: string | null) => tag ? this._filter(tag) : this.allTags.slice()));
   }
 
+  ngOnInit() {
+    this.transactionForm = this.fb.group(this.transaction);
+    // this.transactionForm = this.fb.group({
+    //   user: null,
+    //   date: null,
+    //   account: null,
+    //   description: null,
+    //   group: null,
+    //   amount: 0,
+    //   type: null,
+    //   tags: null
+    // });
+  }
 
   add(event: MatChipInputEvent): void {
     // Add tags only when MatAutocomplete is not open
