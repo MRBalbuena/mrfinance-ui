@@ -2,7 +2,7 @@ import { Component, OnInit, ViewChild, ElementRef, Output, Input, EventEmitter }
 import { FormBuilder, Validators, FormControl, FormGroup } from '@angular/forms';
 import { COMMA, ENTER } from '@angular/cdk/keycodes';
 import { Observable } from 'rxjs';
-import {map, startWith} from 'rxjs/operators';
+import { map, startWith } from 'rxjs/operators';
 import {MatAutocompleteSelectedEvent, MatChipInputEvent, MatAutocomplete} from '@angular/material';
 import { GROUPS, USERS, ACCOUNTS, TYPES } from 'src/app/shared/constants';
 import { ITransaction } from 'src/app/models/transaction.models';
@@ -14,7 +14,7 @@ import { ITransaction } from 'src/app/models/transaction.models';
 })
 export class AppTransactionComponent implements OnInit {
 @Input() transaction: ITransaction;
-@Output() editedTransaction: EventEmitter<ITransaction>;
+@Output() editedTransaction = new EventEmitter<ITransaction>();
 
   transactionForm: FormGroup; //  = this.fb.group(this.transaction);
 

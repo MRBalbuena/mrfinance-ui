@@ -9,6 +9,7 @@ import { ITransaction } from '../models/transaction.models';
 export class AppContainerComponent implements OnInit {
 
   transaction: ITransaction;
+  transactions: ITransaction[];
   constructor() { }
 
   ngOnInit() {
@@ -24,4 +25,7 @@ export class AppContainerComponent implements OnInit {
     };
   }
 
+  submitTransaction(submitted: ITransaction) {
+    console.log('submitted', submitted);
+  }
 }
