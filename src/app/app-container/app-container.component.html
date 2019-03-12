@@ -3,6 +3,6 @@
             <app-transaction [transaction]="transaction" (editedTransaction)="submitTransaction($event)"></app-transaction>
       </div>
       <div class="body-card">
-            <app-transaction-list></app-transaction-list>
+            <app-transaction-list [transactions]="transactions"></app-transaction-list>
       </div>
 </div>

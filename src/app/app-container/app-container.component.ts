@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { ITransaction } from '../models/transaction.models';
 
 @Component({
@@ -23,9 +23,11 @@ export class AppContainerComponent implements OnInit {
       type: null,
       tags: null
     };
+    this.transactions = [];
   }
 
   submitTransaction(submitted: ITransaction) {
     console.log('submitted', submitted);
+    this.transactions.push(submitted);
   }
 }
