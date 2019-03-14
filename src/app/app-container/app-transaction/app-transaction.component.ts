@@ -95,7 +95,6 @@ export class AppTransactionComponent implements OnInit {
   }
 
   onSubmit(event: any) {
-    console.log(JSON.stringify(this.transactionForm.value));
     this.editedTransaction.emit(this.transactionForm.value);
   }
 }

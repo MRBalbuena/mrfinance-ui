@@ -27,7 +27,6 @@ export class AppContainerComponent implements OnInit {
   }
 
   submitTransaction(submitted: ITransaction) {
-    console.log('submitted', submitted);
     this.transactions.push(submitted);
   }
 }
