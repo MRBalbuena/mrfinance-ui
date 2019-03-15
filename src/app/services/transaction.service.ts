@@ -12,4 +12,8 @@ export class TransactionService {
   addTransaction(transaction: ITransaction) {
     this.transaction$.next(transaction);
   }
+
+  getTransaction() {
+    return this.transaction$.asObservable();
+  }
 }

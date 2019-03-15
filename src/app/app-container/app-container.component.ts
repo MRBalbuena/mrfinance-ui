@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { ITransaction } from '../models/transaction.models';
+import { TransactionService } from '../services/transaction.service';
 
 @Component({
   selector: 'app-container',
@@ -10,7 +11,7 @@ export class AppContainerComponent implements OnInit {
 
   transaction: ITransaction;
   transactions: ITransaction[];
-  constructor() { }
+  constructor(private transactionService: TransactionService) { }
 
   ngOnInit() {
     this.transaction = {
@@ -27,6 +28,6 @@ export class AppContainerComponent implements OnInit {
   }
 
   submitTransaction(submitted: ITransaction) {
-    this.transactions.push(submitted);
+    this.transactionService.addTransaction(submitted);
   }
 }

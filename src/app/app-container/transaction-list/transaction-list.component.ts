@@ -1,5 +1,7 @@
 import { Component, OnInit, OnChanges, SimpleChanges, Input } from '@angular/core';
 import { ITransaction } from 'src/app/models/transaction.models';
+import { TransactionService } from 'src/app/services/transaction.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-transaction-list',
@@ -10,8 +12,15 @@ export class TransactionListComponent implements OnInit, OnChanges {
   @Input() transactions: ITransaction[];
 
   transactionList: ITransaction[];
+  newTransaction: Subscription;
   columnsToDisplay = [];
-  constructor() { }
+  constructor(private transactionService: TransactionService) {
+    this.newTransaction = this.transactionService.getTransaction()
+      .subscribe(transaction => {
+        console.log('getTransaction', transaction);
+        this.transactionList.push(transaction);
+      });
+  }
 
   ngOnInit() {
     this.transactionList = [];
