@@ -35,7 +35,17 @@ export class TransactionListComponent implements OnInit, OnChanges {
         amount: 120,
         type: {id: 1, name: 'Out'},
         tags: [{id: 1, name: 'test'}]
-      }];
+      }, {
+        user: { 'id': 2, 'name': 'Gabriela' },
+        date: new Date(),
+        account: {id: 1, name: 'Barclays'},
+        description: 'Asda',
+        group: {id: 1, name: 'Supermarket'},
+        amount: 120,
+        type: {id: 1, name: 'Out'},
+        tags: [{id: 1, name: 'test'}]
+      }
+    ];
   }
 
   ngOnChanges(changes: SimpleChanges): void {
